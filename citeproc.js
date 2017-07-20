@@ -14490,7 +14490,7 @@ CSL.Util.FlipFlopper = function(state) {
     }
     var _nestingQuoteReverse = function() {
         var ret = {};
-        for (var key of Object.keys(_nestingData)) {
+        for (var key in Object.keys(_nestingData)) {
             if (_nestingData[key].type === "quote") {
                 ret[_nestingData[key].closer] = _nestingData[key];
             }
@@ -14499,7 +14499,7 @@ CSL.Util.FlipFlopper = function(state) {
     }();
     var _nestingDataAttr = function() {
         var ret = {};
-        for (var key of Object.keys(_nestingData)) {
+        for (var key in Object.keys(_nestingData)) {
             if (_nestingData[key].type === "nocase") continue;
             var attr = _nestingData[key].attr;
             var outer = _nestingData[key].outer;
@@ -14522,7 +14522,7 @@ CSL.Util.FlipFlopper = function(state) {
     function _getNestingOpenerParams(opener) {
         var openers = [];
         var closer;
-        for (var key of Object.keys(_nestingData)) {
+        for (var key in Object.keys(_nestingData)) {
             if (_nestingData[opener].type !== "quote" || !_nestingData[opener]) {
                 openers.push(key);
             }
@@ -14533,7 +14533,7 @@ CSL.Util.FlipFlopper = function(state) {
     }
     var _nestingParams = function() {
         var ret = {};
-        for (var key of Object.keys(_nestingData)) {
+        for (var key in Object.keys(_nestingData)) {
             ret[key] = _getNestingOpenerParams(key);
         }
         return ret;
@@ -14546,7 +14546,7 @@ CSL.Util.FlipFlopper = function(state) {
             openers.push(opener);
             vals[_nestingParams[opener].closer] = true;
         }
-        for (var closer of Object.keys(vals)) {
+        for (var closer in Object.keys(vals)) {
             closers.push(closer);
         }
         var all = openers.concat(closers).map(function(str){return str.replace("(", "\\(")}).join("|");
